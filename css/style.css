@@ -5,6 +5,49 @@ body {
   color: #222;
 }
 
+/* --- LOGIN RESPONSIVE --- */
+body.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-logo {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.login-logo img {
+  height: 120px;
+  max-width: 90vw;
+}
+.login-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  min-width: 0;
+}
+.login-container input, .login-container button {
+  margin-left: 0;
+  margin-right: 0;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+@media (max-width: 600px) {
+  .login-logo img {
+    height: 80px;
+  }
+  .login-container {
+    max-width: 95vw;
+    padding: 0 4vw;
+  }
+}
+
+/* --- BARRA SUPERIOR Y MENÚ USUARIO --- */
 .header-corporativo {
   background: #003366;
   color: #fff;
@@ -14,23 +57,21 @@ body {
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
-
 .header-corporativo .logo-menu {
   display: flex;
   align-items: center;
   padding: 0 30px;
   height: 64px;
 }
-
 .header-corporativo img {
   height: 40px;
   margin-right: 18px;
 }
-
 .header-corporativo nav {
-  margin-left: auto;
+  display: flex;
+  margin-left: 0;
+  flex: 1;
 }
-
 .header-corporativo nav a {
   color: #fff;
   text-decoration: none;
@@ -41,10 +82,93 @@ body {
   padding-bottom: 2px;
   border-bottom: 2px solid transparent;
 }
-
 .header-corporativo nav a:hover, .header-corporativo nav a.active {
   color: #ffcc00;
   border-bottom: 2px solid #ffcc00;
+}
+
+/* Menú usuario */
+.user-menu {
+  position: relative;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+.user-menu-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  transition: background 0.2s;
+}
+.user-menu-btn:hover, .user-menu-btn:focus {
+  background: rgba(255,255,255,0.08);
+}
+.user-menu-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 110%;
+  background: #fff;
+  color: #222;
+  min-width: 160px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 2000;
+}
+.user-menu.open .user-menu-dropdown {
+  display: block;
+}
+.user-menu-dropdown a {
+  display: block;
+  padding: 12px 18px;
+  color: #222;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.user-menu-dropdown a:hover {
+  background: #f4f6fb;
+}
+@media (max-width: 800px) {
+  .header-corporativo .logo-menu {
+    padding: 0 10px;
+    height: 54px;
+  }
+  .header-corporativo nav a {
+    margin: 0 8px;
+    font-size: 0.98em;
+  }
+  .user-menu-btn {
+    padding: 8px 8px;
+    font-size: 0.98em;
+  }
+}
+@media (max-width: 600px) {
+  .header-corporativo .logo-menu {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 8px 4px;
+  }
+  .header-corporativo nav {
+    margin-left: 0;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+  .user-menu {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-end;
+  }
 }
 
 .logout-btn {
@@ -106,40 +230,6 @@ body {
     margin-left: 0;
     margin-top: 6px;
   }
-}
-
-.login-container {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
-  width: 100%;
-  max-width: 400px;
-  margin: 100px auto;
-  text-align: center;
-}
-
-.login-container input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.login-container button {
-  width: 100%;
-  padding: 12px;
-  background: #003366;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: 500;
-  transition: background 0.2s;
-}
-.login-container button:hover {
-  background: #002244;
 }
 
 #historial-puntos {
