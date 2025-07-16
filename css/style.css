@@ -1,70 +1,111 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #f5f7fa;
-  color: #333;
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  background: #f4f6fb;
+  color: #222;
 }
 
-.main-header {
-  background: #007bff;
-  color: white;
-  padding: 15px;
+.header-corporativo {
+  background: #003366;
+  color: #fff;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.header-corporativo .logo-menu {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  padding: 0 30px;
+  height: 64px;
+}
+
+.header-corporativo img {
+  height: 40px;
+  margin-right: 18px;
+}
+
+.header-corporativo nav {
+  margin-left: auto;
+}
+
+.header-corporativo nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 18px;
+  font-weight: 500;
+  font-size: 1.05em;
+  transition: color 0.2s;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+
+.header-corporativo nav a:hover, .header-corporativo nav a.active {
+  color: #ffcc00;
+  border-bottom: 2px solid #ffcc00;
 }
 
 .logout-btn {
   background: #dc3545;
   color: white;
   border: none;
-  padding: 10px;
+  padding: 10px 18px;
   border-radius: 5px;
   cursor: pointer;
+  margin-left: 20px;
+  font-weight: 500;
+  font-size: 1em;
+  transition: background 0.2s;
+}
+.logout-btn:hover {
+  background: #b52a37;
 }
 
 .main-content {
-  padding: 20px;
+  padding: 32px 20px 20px 20px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .card {
   background: white;
-  padding: 20px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  padding: 28px 24px;
+  margin-bottom: 22px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+@media (max-width: 800px) {
+  .main-content {
+    padding: 24px 6px 10px 6px;
+  }
+  .header-corporativo .logo-menu {
+    padding: 0 10px;
+    height: 54px;
+  }
+  .header-corporativo nav a {
+    margin: 0 8px;
+    font-size: 0.98em;
+  }
 }
 
 @media (max-width: 600px) {
   .card {
     margin: 10px 0;
+    padding: 16px 8px;
   }
-
-  .main-header h1 {
-    font-size: 18px;
+  .header-corporativo .logo-menu {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 8px 4px;
   }
-
-  .logout-btn {
-    padding: 8px;
-    font-size: 14px;
+  .header-corporativo nav {
+    margin-left: 0;
+    margin-top: 6px;
   }
-}
-/* Estilo para la lista de historial */
-#historial-puntos {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-#historial-puntos li {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
-}
-
-#historial-puntos li span {
-  font-weight: bold;
 }
 
 .login-container {
@@ -89,11 +130,33 @@ body {
 .login-container button {
   width: 100%;
   padding: 12px;
-  background: #007bff;
+  background: #003366;
   color: white;
   border: none;
   border-radius: 5px;
   font-size: 16px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.login-container button:hover {
+  background: #002244;
+}
+
+#historial-puntos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#historial-puntos li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+}
+
+#historial-puntos li span {
+  font-weight: bold;
 }
 
 #lista-equipo {

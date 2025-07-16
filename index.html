@@ -5,16 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Iniciar Sesión | Sistema de Beneficios</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .login-logo {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .login-logo img {
+      height: 120px;
+    }
+    .login-container {
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .login-container input, .login-container button {
+      margin-left: 0;
+      margin-right: 0;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-
+  <div class="login-logo">
+    <img src="img/LOGO_GCG.png" alt="Logo GCG" />
+  </div>
   <div class="login-container">
     <h2>Iniciar Sesión</h2>
     <input type="text" id="username" placeholder="Usuario">
     <input type="password" id="password" placeholder="Contraseña">
     <button onclick="login()">Entrar</button>
   </div>
-
   <script src="js/script.js"></script>
 </body>
 </html>

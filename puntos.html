@@ -8,13 +8,21 @@
 </head>
 <body>
 
-  <!-- Encabezado fijo -->
-  <header class="main-header">
-    <h1>Mis Puntos</h1>
-    <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
+  <header class="header-corporativo">
+    <div class="logo-menu">
+      <img src="img/LOGO_GCG_WHITE.png" alt="Logo GCG" />
+      <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="puntos.html" class="active">Puntos</a>
+        <a href="movimientos.html">Movimientos</a>
+        <a href="reportes.html">Reportes</a>
+        <a href="reglamento.html">Reglamento</a>
+        <a href="equipo.html">Equipo</a>
+      </nav>
+      <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
+    </div>
   </header>
 
-  <!-- Contenido principal -->
   <main class="main-content">
     <section class="card">
       <h2>Puntos Acumulados</h2>
@@ -29,7 +37,6 @@
     </section>
   </main>
 
-  <!-- JavaScript -->
   <script src="js/script.js"></script>
 </body>
 </html>
