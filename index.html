@@ -6,12 +6,13 @@
   <title>Iniciar Sesión | Sistema de Beneficios</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    body {
+    body.login-page {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      background: linear-gradient(135deg, #eaf0fb 0%, #c9d6ff 100%);
     }
     .login-logo {
       text-align: center;
@@ -19,30 +20,112 @@
     }
     .login-logo img {
       height: 120px;
+      max-width: 90vw;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.08));
     }
-    .login-container {
-      margin: 0 auto;
+    .login-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 6px 32px rgba(0,0,0,0.10);
+      padding: 38px 32px 28px 32px;
+      max-width: 370px;
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: 18px;
+      animation: fadeIn 0.7s;
     }
-    .login-container input, .login-container button {
-      margin-left: 0;
-      margin-right: 0;
-      text-align: center;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: none; }
+    }
+    .login-card h2 {
+      margin-bottom: 10px;
+      color: #003366;
+      font-size: 1.6em;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .input-group {
+      width: 100%;
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 12px 40px 12px 40px;
+      border: 1.5px solid #c9d6ff;
+      border-radius: 8px;
+      font-size: 1em;
+      background: #f7faff;
+      color: #222;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .input-group input:focus {
+      border: 1.5px solid #003366;
+      background: #fff;
+    }
+    .input-group .icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #003366;
+      font-size: 1.2em;
+      opacity: 0.7;
+    }
+    .login-card button {
+      width: 100%;
+      padding: 13px 0;
+      background: linear-gradient(90deg, #003366 60%, #0055a5 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1em;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .login-card button:hover {
+      background: linear-gradient(90deg, #0055a5 0%, #003366 100%);
+      transform: translateY(-2px) scale(1.02);
+    }
+    @media (max-width: 600px) {
+      .login-logo img {
+        height: 80px;
+      }
+      .login-card {
+        max-width: 98vw;
+        padding: 24px 6vw 18px 6vw;
+      }
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body class="login-page">
+  <div style="text-align:center; margin-bottom: 10px;">
+    <span style="color:#c00; font-size:1.5em; font-weight:700; letter-spacing:2px; font-family:'Segoe UI','Roboto','Arial',sans-serif;">PORTAL DEL COLABORADOR</span>
+  </div>
   <div class="login-logo">
     <img src="img/LOGO_GCG.png" alt="Logo GCG" />
   </div>
-  <div class="login-container">
+  <form class="login-card" onsubmit="login(); return false;">
     <h2>Iniciar Sesión</h2>
-    <input type="text" id="username" placeholder="Usuario">
-    <input type="password" id="password" placeholder="Contraseña">
-    <button onclick="login()">Entrar</button>
-  </div>
+    <div class="input-group">
+      <span class="icon"><i class="fa fa-user"></i></span>
+      <input type="text" id="username" placeholder="Usuario" autocomplete="username" required>
+    </div>
+    <div class="input-group">
+      <span class="icon"><i class="fa fa-lock"></i></span>
+      <input type="password" id="password" placeholder="Contraseña" autocomplete="current-password" required>
+    </div>
+    <button type="submit">Entrar</button>
+  </form>
   <script src="js/script.js"></script>
 </body>
 </html>

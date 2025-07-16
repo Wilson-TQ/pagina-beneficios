@@ -3,11 +3,163 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Inicio | Sistema de Beneficios</title>
+  <title>Dashboard | Sistema de Beneficios</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .dashboard-paneles {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .panel-superior {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 22px 32px 18px 32px;
+      font-size: 1.25em;
+      font-weight: 600;
+      color: #003366;
+      letter-spacing: 0.5px;
+      margin-bottom: 0;
+      text-align: left;
+    }
+    .panel-central {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      padding: 36px 32px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 0;
+      position: relative;
+    }
+    .panel-central .puntos-grandes {
+      font-size: 3.2em;
+      font-weight: 800;
+      color: #003366;
+      margin-bottom: 8px;
+      letter-spacing: 2px;
+    }
+    .panel-central .vencimiento {
+      font-size: 1em;
+      color: #b52a37;
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+    .paneles-dos-columnas {
+      display: flex;
+      gap: 24px;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .panel-movimientos, .panel-nivel {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      flex: 1;
+      padding: 22px 18px 18px 18px;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .panel-movimientos h4, .panel-nivel h4 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #003366;
+      font-size: 1.1em;
+      font-weight: 700;
+    }
+    .movimientos-lista {
+      width: 100%;
+      list-style: none;
+      padding: 0;
+      margin: 0 0 8px 0;
+    }
+    .movimientos-lista li {
+      font-size: 0.98em;
+      padding: 7px 0;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .movimientos-lista li:last-child { border-bottom: none; }
+    .movimientos-lista li:hover { background: #f4f6fb; }
+    .panel-nivel {
+      align-items: center;
+      text-align: center;
+      justify-content: flex-start;
+    }
+    .panel-nivel img {
+      height: 60px;
+      margin-bottom: 8px;
+      margin-top: 8px;
+    }
+    .panel-nivel .nivel-nombre {
+      font-size: 1.1em;
+      font-weight: 700;
+      color: #003366;
+      margin-bottom: 2px;
+    }
+    .panel-nivel .nivel-mensaje {
+      font-size: 0.98em;
+      color: #888;
+      margin-bottom: 0;
+    }
+    .paneles-promos {
+      display: flex;
+      gap: 18px;
+      margin-top: 18px;
+      justify-content: center;
+    }
+    .promo-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      overflow: hidden;
+      width: 220px;
+      min-width: 0;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .promo-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      display: block;
+    }
+    .promo-card .promo-titulo {
+      font-size: 1em;
+      font-weight: 600;
+      color: #003366;
+      margin: 10px 0 8px 0;
+    }
+    .promo-card .promo-desc {
+      font-size: 0.95em;
+      color: #555;
+      margin-bottom: 10px;
+      padding: 0 8px;
+    }
+    .promo-card:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+    }
+    @media (max-width: 900px) {
+      .paneles-dos-columnas { flex-direction: column; gap: 12px; }
+      .paneles-promos { flex-direction: column; gap: 12px; align-items: center; }
+      .promo-card { width: 98vw; max-width: 320px; }
+    }
+  </style>
 </head>
 <body>
-
   <header class="header-corporativo">
     <div class="logo-menu">
       <img src="img/LOGO_GCG_WHITE.png" alt="Logo GCG" />
@@ -31,28 +183,57 @@
       </div>
     </div>
   </header>
-
   <main class="main-content">
-    <section class="card">
-      <h2>Resumen</h2>
-      <ul>
-        <li>Total de Puntos: <strong>1200</strong></li>
-        <li>Beneficios Canjeados: <strong>2</strong></li>
-        <li>Miembro desde: <strong>2023</strong></li>
-      </ul>
-    </section>
-    <section class="card">
-      <h3>Ir a:</h3>
-      <ul>
-        <li><a href="puntos.html">📌 Ver mis puntos</a></li>
-        <li><a href="movimientos.html">📊 Historial de puntos</a></li>
-        <li><a href="equipo.html">👥 Mi equipo</a></li>
-        <li><a href="reglamento.html">📘 Reglamento</a></li>
-        <li><a href="reportes.html">📈 Reportes</a></li>
-      </ul>
-    </section>
+    <div class="dashboard-paneles">
+      <div class="panel-superior">
+        ¡Bienvenido, <span id="nombreUsuario">Wilson</span>! Este es tu portal de beneficios.
+      </div>
+      <div class="panel-central">
+        <div class="puntos-grandes">1,200</div>
+        <div class="vencimiento">120 puntos se vencerán el 30/06/2025</div>
+      </div>
+      <div class="paneles-dos-columnas">
+        <div class="panel-movimientos">
+          <h4>Últimos movimientos</h4>
+          <ul class="movimientos-lista">
+            <li onclick="window.location='movimientos.html'">
+              <span>+200 pts</span> <span>Encuesta bienestar</span>
+            </li>
+            <li onclick="window.location='movimientos.html'">
+              <span>-500 pts</span> <span>Canje: Gift Card</span>
+            </li>
+            <li onclick="window.location='movimientos.html'">
+              <span>+100 pts</span> <span>Reconocimiento</span>
+            </li>
+            <li onclick="window.location='movimientos.html'">
+              <span>-80 pts</span> <span>Canje: Café</span>
+            </li>
+          </ul>
+          <a href="movimientos.html" style="font-size:0.98em;color:#0055a5;text-decoration:underline;">Ver todos los movimientos</a>
+        </div>
+        <div class="panel-nivel">
+          <img src="img/gold.png" alt="Nivel Gold" />
+          <div class="nivel-nombre">Nivel Gold</div>
+          <div class="nivel-mensaje">Faltan <b>300 pts</b> para llegar a <b>Platinum</b></div>
+        </div>
+      </div>
+      <div class="paneles-promos">
+        <div class="promo-card" onclick="window.location='puntos.html'">
+          <img src="img/promo_1.jpg" alt="Promo 1" />
+          <div class="promo-titulo">Descuento en Restaurante XYZ</div>
+          <div class="promo-desc">Canjea tus puntos y disfruta de un 30% de descuento en tu almuerzo.</div>
+        </div>
+        <div class="promo-card" onclick="window.location='puntos.html'">
+          <img src="img/promo_2.jpg" alt="Promo 2" />
+          <div class="promo-titulo">Gift Card Tienda ABC</div>
+          <div class="promo-desc">Obtén una gift card exclusiva para colaboradores, ¡aprovecha tus puntos!</div>
+        </div>
+      </div>
+    </div>
   </main>
-
+  <footer style="width:100%;background:#003366;color:#fff;text-align:center;padding:18px 0 10px 0;font-size:1em;font-weight:500;letter-spacing:1px;margin-top:32px;">
+    Corporación GCG &copy; 2025
+  </footer>
   <script src="js/script.js"></script>
   <script>
 function toggleUserMenu(e) {
