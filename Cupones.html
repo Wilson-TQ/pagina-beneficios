@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cupones | Sistema de Beneficios</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      background: #eaf0fb;
+    }
+    .main-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 10px 20px 10px;
+    }
+    .panel-identificacion {
+      background: rgba(255,255,255,0.92);
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 32px;
+      margin-bottom: 32px;
+      gap: 24px;
+    }
+    .panel-identificacion .datos {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .panel-identificacion .foto {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #f4f6fb;
+      overflow: hidden;
+      margin-right: 24px;
+      border: 2px solid #003366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .panel-identificacion .foto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .panel-identificacion .actualizar-btn {
+      background: #003366;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1em;
+      font-weight: 700;
+      padding: 18px 32px;
+      height: 80px;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .panel-identificacion .actualizar-btn:hover {
+      background: #0055a5;
+    }
+    .cupones-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .cupon-card {
+      background: rgba(255,255,255,0.95);
+      border-radius: 14px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-width: 0;
+    }
+    .cupon-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      display: block;
+    }
+    .cupon-card .titulo {
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #003366;
+      margin: 12px 0 6px 0;
+    }
+    .cupon-card .desc {
+      font-size: 0.98em;
+      color: #555;
+      margin-bottom: 12px;
+      padding: 0 8px;
+    }
+    .cupon-card:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+    }
+    @media (max-width: 900px) {
+      .cupones-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .panel-identificacion { flex-direction: column; align-items: flex-start; padding: 18px 8px; }
+      .cupones-grid { grid-template-columns: 1fr; gap: 14px; }
+      .panel-identificacion .actualizar-btn { width: 100%; height: 54px; margin-top: 12px; }
+    }
+    .modal-bg {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.2s;
+    }
+    .modal {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 6px 32px rgba(0,0,0,0.18);
+      padding: 32px 24px 18px 24px;
+      max-width: 400px;
+      width: 95vw;
+      text-align: center;
+      animation: fadeIn 0.3s;
+    }
+    .modal h3 { color: #003366; margin-bottom: 10px; }
+    .modal .vencimiento { color: #b52a37; font-weight: 600; margin-bottom: 8px; }
+    .modal .codigo { color: #003366; font-weight: 700; margin-bottom: 8px; font-size: 1.1em; }
+    .modal .terminos { font-size: 0.98em; color: #444; }
+    .modal .cerrar-btn {
+      margin-top: 18px;
+      background: #003366;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .modal .cerrar-btn:hover { background: #b52a37; }
+  </style>
+</head>
+<body>
+  <header class="header-corporativo">
+    <div class="logo-menu">
+      <img src="img/LOGO_GCG_WHITE.png" alt="Logo GCG" />
+      <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="puntos.html">Puntos</a>
+        <a href="movimientos.html">Movimientos</a>
+        <a href="reportes.html">Reportes</a>
+        <a href="reglamento.html">Reglamento</a>
+        <a href="equipo.html">Equipo</a>
+        <a href="beneficios.html">Beneficios</a>
+        <a href="cupones.html" class="active">Cupones</a>
+      </nav>
+      <div class="user-menu" id="userMenu">
+        <button class="user-menu-btn" onclick="toggleUserMenu(event)">
+          <span id="userName">Usuario</span>
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="user-menu-dropdown" id="userMenuDropdown">
+          <a href="#" onclick="openSettings()">Configuración</a>
+          <a href="#" onclick="logout()">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="main-content">
+    <div class="panel-identificacion">
+      <div class="foto"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Foto Colaborador"></div>
+      <div class="datos">
+        <div><b>Nombre:</b> María López</div>
+        <div><b>Empresa:</b> GCG S.A.</div>
+        <div><b>ID:</b> 654321</div>
+      </div>
+      <button class="actualizar-btn" onclick="alert('Información actualizada')">Actualizar</button>
+    </div>
+    <div class="cupones-grid">
+      <div class="cupon-card" onclick="abrirModalCupon('Cupón Restaurante', '30/09/2025', '46374755-1234', 'Términos y condiciones: Solo válido para consumo en restaurante. No acumulable.')">
+        <img src="img/promo_1.jpg" alt="Cupón 1" />
+        <div class="titulo">Cupón Restaurante</div>
+        <div class="desc">Descuento especial en restaurante aliado.</div>
+      </div>
+      <div class="cupon-card" onclick="abrirModalCupon('Cupón Tienda', '15/10/2025', '46374755-1234', 'Términos y condiciones: Un cupón por persona. Válido hasta agotar stock.')">
+        <img src="img/promo_2.jpg" alt="Cupón 2" />
+        <div class="titulo">Cupón Tienda</div>
+        <div class="desc">Cupón para compras en tienda colaboradora.</div>
+      </div>
+      <div class="cupon-card" onclick="abrirModalCupon('Cupón Café', '20/11/2025', '46374755-1234', 'Términos y condiciones: Solo válido para café. No transferible.')">
+        <img src="img/promo_1.jpg" alt="Cupón 3" />
+        <div class="titulo">Cupón Café</div>
+        <div class="desc">Cupón para café gratis en cafetería.</div>
+      </div>
+      <div class="cupon-card" onclick="abrirModalCupon('Cupón Regalo', '31/12/2025', '46374755-1234', 'Términos y condiciones: Válido solo para colaboradores activos.')">
+        <img src="img/promo_2.jpg" alt="Cupón 4" />
+        <div class="titulo">Cupón Regalo</div>
+        <div class="desc">Cupón para regalo especial de fin de año.</div>
+      </div>
+    </div>
+  </main>
+  <footer style="width:100%;background:#003366;color:#fff;text-align:center;padding:18px 0 10px 0;font-size:1em;font-weight:500;letter-spacing:1px;margin-top:32px;">
+    Corporación GCG &copy; 2025
+  </footer>
+  <div id="modal-bg" class="modal-bg" style="display:none;">
+    <div class="modal" id="modal-content">
+      <h3 id="modal-titulo"></h3>
+      <div class="vencimiento" id="modal-vencimiento"></div>
+      <div class="codigo" id="modal-codigo"></div>
+      <div class="terminos" id="modal-terminos"></div>
+      <button class="cerrar-btn" onclick="cerrarModalCupon()">Cerrar</button>
+    </div>
+  </div>
+  <script src="js/script.js"></script>
+  <script>
+function toggleUserMenu(e) {
+  e.stopPropagation();
+  document.getElementById('userMenu').classList.toggle('open');
+}
+window.addEventListener('click', function() {
+  document.getElementById('userMenu').classList.remove('open');
+});
+function openSettings() {
+  alert('Abrir configuración de usuario');
+}
+function abrirModalCupon(titulo, vencimiento, codigo, terminos) {
+  document.getElementById('modal-titulo').innerText = titulo;
+  document.getElementById('modal-vencimiento').innerText = 'Vence el ' + vencimiento;
+  document.getElementById('modal-codigo').innerText = 'Código: ' + codigo;
+  document.getElementById('modal-terminos').innerText = terminos;
+  document.getElementById('modal-bg').style.display = 'flex';
+}
+function cerrarModalCupon() {
+  document.getElementById('modal-bg').style.display = 'none';
+}
+  </script>
+</body>
+</html>
