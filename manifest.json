@@ -1,0 +1,20 @@
+{
+  "name": "Portal del Colaborador",
+  "short_name": "Beneficios GCG",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#003366",
+  "icons": [
+    {
+      "src": "img/LOGO_GCG_SIN_FONDO.png",
+      "sizes": "142x142",
+      "type": "image/png"
+    },
+    {
+      "src": "img/LOGO_GCG.png",
+      "sizes": "529x545",
+      "type": "image/png"
+    }
+  ]
+}

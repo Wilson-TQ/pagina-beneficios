@@ -38,7 +38,7 @@ function login() {
 
   if (usuario === "admin" && clave === "1234") {
     alert("¡Bienvenido!");
-    window.location.href = "dashboard.html";
+    window.location.href = "beneficios.html";
   } else {
     alert("Usuario o contraseña incorrecta");
   }
